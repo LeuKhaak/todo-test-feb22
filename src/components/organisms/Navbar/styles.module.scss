@@ -1,0 +1,15 @@
+@import "../../../assets/styles/styles.scss";
+.navbar {
+  background-color: $bgcCard;
+  .container {
+    @include content;
+    margin: 0 auto 0 auto;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-evenly;
+    .link {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+}
