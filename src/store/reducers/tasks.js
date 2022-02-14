@@ -1,6 +1,7 @@
 import {
   START_DATA,
   GET_ERROR,
+  ADD_DATA,
   //SHOW_LOADER,
 } from "../actionTypes/actionTypesNames";
 
@@ -14,6 +15,11 @@ const initialState = {
 function loadTasks(state = initialState, action) {
   switch (action.type) {
     case START_DATA:
+      return {
+        ...state,
+        taskList: action.taskList,
+      };
+    case ADD_DATA:
       return {
         ...state,
         taskList: action.taskList,

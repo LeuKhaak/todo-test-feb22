@@ -1,12 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-.creator {
+.todo {
   background-color: #fbfbfb;
+}
+
+.todo .container {
+  width: 90%;
+  max-width: 90rem;
+  margin: 0 auto 0 auto;
   margin: 0 auto 0 auto;
   padding: 1rem 0;
+}
+
+.todo .container .taskList .task {
+  padding: 0.5rem;
+  border: 0.1rem solid #a09a9a;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.todo .container .taskList .task .taskActive {
+  color: #000;
+}
+
+.todo .container .taskList .task .completed {
+  color: cadetblue;
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
+
+.todo .container .taskList .task .delete {
+  color: red;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }

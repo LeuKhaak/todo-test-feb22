@@ -1,5 +1,6 @@
 import {
   CREATE_DATA,
+  POST_DATA,
   CREATE_ERROR,
   //SHOW_LOADER,
 } from "../actionTypes/actionTypesNames";
@@ -10,11 +11,11 @@ import Repository from "../../repository";
 //}
 
 export function getError(value) {
-  return { type: CREATE_DATA, value };
+  return { type: CREATE_ERROR, value };
 }
 
 export function createData(value) {
-  return { type: CREATE_ERROR, newTask: value };
+  return { type: CREATE_DATA, newTask: value };
 }
 
 export const postNewData = () => async (dispatch) => {

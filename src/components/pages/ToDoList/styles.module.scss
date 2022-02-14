@@ -12,12 +12,22 @@
         border: 0.1rem solid rgb(160, 154, 154);
         border-radius: 0.5rem;
         margin-top: 0.5rem;
+        display: flex;
+        justify-content: space-between;
         .taskActive {
           color: #000;
         }
         .completed {
           color: cadetblue;
           text-decoration-line: line-through;
+        }
+        .delete {
+          color: red;
+          font-size: 1.2rem;
+          font-weight: 700;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
         }
       }
     }

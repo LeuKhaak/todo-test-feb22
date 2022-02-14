@@ -1,5 +1,6 @@
 import {
   START_DATA,
+  ADD_DATA,
   GET_ERROR,
   //SHOW_LOADER,
 } from "../actionTypes/actionTypesNames";
@@ -16,7 +17,9 @@ export function getError(value) {
 export function startData(value) {
   return { type: START_DATA, taskList: value };
 }
-
+export function addData(value) {
+  return { type: ADD_DATA, taskList: value };
+}
 export const getStartData = () => async (dispatch) => {
   //dispatch(showLoader(true));
   const { value, error } = await Repository.APIstartData.getPersons();

@@ -8,7 +8,7 @@ class startData {
     };
     try {
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/users/1/todos?_limit=10"
+        "https://jsonplaceholder.typicode.com/users/1/todos"
       );
       result.value = response.data;
     } catch (e) {
