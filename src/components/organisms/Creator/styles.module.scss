@@ -5,4 +5,12 @@
   padding: 1rem 0;
   display: flex;
   justify-content: space-evenly;
+  font-size: 1.2rem;
+  .search {
+    width: 25rem;
+    .searchInput {
+      width: 100%;
+      padding: 0.5rem 0;
+    }
+  }
 }

@@ -1,5 +1,7 @@
 @import "../../../assets/styles/styles.scss";
 .taskList {
+  max-height: 75vh;
+  overflow: scroll;
   .task {
     padding: 0.5rem;
     border: 0.1rem solid rgb(160, 154, 154);
@@ -14,13 +16,23 @@
       color: cadetblue;
       text-decoration-line: line-through;
     }
-    .delete {
-      color: red;
-      font-size: 1.2rem;
-      font-weight: 700;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
+    .buttonsWrapper {
+      .edit {
+        background-color: rgb(240, 240, 166);
+        border: 0.1rem solid #000;
+        border-radius: 0.5rem;
+        padding: 0.1rem 0.3rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
+      }
+      .delete {
+        color: red;
+        font-size: 1.2rem;
+        font-weight: 700;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
     }
   }
 }

@@ -3,6 +3,8 @@ import {
   CREATE_ERROR,
   DELETE_ERROR,
   DELETE_DATA,
+  EDIT_DATA,
+  EDIT_ERROR,
 } from "../actionTypes/actionTypesNames";
 
 const initialState = {
@@ -10,6 +12,8 @@ const initialState = {
   newError: null,
   deleteError: null,
   deleteRequest: false,
+  editTask: false,
+  editError: false,
 };
 
 function loadTasks(state = initialState, action) {
@@ -33,6 +37,16 @@ function loadTasks(state = initialState, action) {
       return {
         ...state,
         deleteRequest: action.deleteRequest,
+      };
+    case EDIT_DATA:
+      return {
+        ...state,
+        editTask: action.editTask,
+      };
+    case EDIT_ERROR:
+      return {
+        ...state,
+        editError: action.editError,
       };
     default:
       return state;

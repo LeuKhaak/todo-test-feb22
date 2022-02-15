@@ -1,0 +1,17 @@
+@import "../../../assets/styles/styles.scss";
+.paginator {
+  margin-top: 1rem;
+  display: flex;
+  .page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(150, 224, 199);
+    border: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+}

@@ -2,9 +2,11 @@ import {
   START_DATA,
   GET_ERROR,
   ADD_DATA,
+  USER_ID,
 } from "../actionTypes/actionTypesNames";
 
 const initialState = {
+  userId: 1,
   taskList: "",
   getError: null,
 };
@@ -15,6 +17,11 @@ function loadTasks(state = initialState, action) {
       return {
         ...state,
         taskList: action.taskList,
+      };
+    case USER_ID:
+      return {
+        ...state,
+        userId: action.userId,
       };
     case ADD_DATA:
       return {

@@ -3,6 +3,8 @@ import {
   CREATE_ERROR,
   DELETE_ERROR,
   DELETE_DATA,
+  EDIT_DATA,
+  EDIT_ERROR,
 } from "../actionTypes/actionTypesNames";
 import Repository from "../../repository";
 
@@ -20,6 +22,14 @@ export function deleteReq(value) {
 
 export function createData(value) {
   return { type: CREATE_DATA, newTask: value };
+}
+
+export function editThisData(value) {
+  return { type: EDIT_DATA, editTask: value };
+}
+
+export function editError(value) {
+  return { type: EDIT_ERROR, editError: value };
 }
 
 export const postNewData = (newTask) => async (dispatch) => {
@@ -41,5 +51,15 @@ export const deleteTask = (taskId) => async (dispatch) => {
     dispatch(deleteError(false));
     dispatch(deleteReq(taskId));
     //dispatch(deleteRequest(false));
+  }
+};
+
+export const putTask = (task) => async (dispatch) => {
+  const { value, error } = await Repository.APIeditData.putTask(task);
+  if (error || !value) {
+    dispatch(editError(true));
+  } else {
+    dispatch(editError(false));
+    dispatch(editThisData(value));
   }
 };

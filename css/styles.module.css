@@ -1,12 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-.todo {
+.creator {
   background-color: #fbfbfb;
-}
-
-.todo .container {
-  width: 90%;
-  max-width: 90rem;
-  margin: 0 auto 0 auto;
   margin: 0 auto 0 auto;
   padding: 1rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-size: 1.2rem;
+}
+
+.creator .search {
+  width: 25rem;
+}
+
+.creator .search .searchInput {
+  width: 100%;
+  padding: 0.5rem 0;
 }

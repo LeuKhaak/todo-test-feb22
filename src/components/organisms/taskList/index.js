@@ -1,13 +1,9 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import styles from "./styles.module.scss";
 import Error from "src/components/atoms/Error";
-//import { v4 as uuidv4 } from "uuid";
-//import { useSelector, useDispatch } from "react-redux";
-//import { postNewData } from "src/store/actions/newTask";
-//import { addData } from "src/store/actions/tasks";
 
-function TaskList({ errorData, tasksData, deleteTodos }) {
-  return errorData ? (
+function TaskList({ errorData, tasksData, deleteTodos, markTodos, editTodos }) {
+  return errorData && errorData.value ? (
     <Error notice="The get request failed!" />
   ) : (
     <div className={styles.taskList}>
@@ -21,12 +17,26 @@ function TaskList({ errorData, tasksData, deleteTodos }) {
             >
               {element.title}
             </div>
-            <button
-              onClick={() => deleteTodos(element.id)}
-              className={styles.delete}
-            >
-              x
-            </button>
+            <div className={styles.buttonsWrapper}>
+              <button
+                onClick={() => editTodos(element.id)}
+                className={styles.edit}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => markTodos(element.id)}
+                className={styles.edit}
+              >
+                Mark
+              </button>
+              <button
+                onClick={() => deleteTodos(element.id)}
+                className={styles.delete}
+              >
+                x
+              </button>
+            </div>
           </div>
         ))}
     </div>

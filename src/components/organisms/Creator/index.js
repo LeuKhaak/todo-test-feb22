@@ -15,7 +15,7 @@ function Creator() {
   const newError = useSelector((state) => state.newTask.newError);
   const tasksDataCopy = tasksData ? [...tasksData] : "";
   const newTask = useSelector((state) => state.newTask.newTask);
-  const userId = tasksData && tasksData[0] ? tasksData[0].userId : "";
+  const userId = useSelector((state) => state.tasks.userId);
 
   const createNewTodos = (event) => {
     setNewTodos({
