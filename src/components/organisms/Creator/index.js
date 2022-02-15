@@ -2,54 +2,55 @@ import { React, useState, useEffect } from "react";
 import styles from "./styles.module.scss";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
-//import { createData } from "src/store/actions/newTask";
-import { addData } from "src/store/actions/person";
+import { postNewData } from "src/store/actions/newTask";
+import { createData } from "src/store/actions/newTask";
+import { addData } from "src/store/actions/tasks";
 
 function Creator() {
   const dispatch = useDispatch();
 
-  const [taskTitle, setTaskTitle] = useState("");
+  const [newTodos, setNewTodos] = useState(false);
 
   const tasksData = useSelector((state) => state.tasks.taskList);
-  const tasksDataCopy = [...tasksData];
-  //const newTask = useSelector((state) => state.newTask.newTask);
-  const userId = tasksData[0] ? tasksData[0].userId : "";
-  //console.log(userId);
+  const newError = useSelector((state) => state.newTask.newError);
+  const tasksDataCopy = tasksData ? [...tasksData] : "";
+  const newTask = useSelector((state) => state.newTask.newTask);
+  const userId = tasksData && tasksData[0] ? tasksData[0].userId : "";
 
-  const createTitle = (event) => {
+  const createNewTodos = (event) => {
+    setNewTodos({
+      userId: userId,
+      id: uuidv4(),
+      title: event.target.value,
+      completed: false,
+    });
+  };
+
+  const postNewTodos = (event) => {
     if (event.key === "Enter" && event.target.value.length > 2) {
-      setTaskTitle(event.target.value);
+      dispatch(postNewData(newTodos));
       event.target.value = "";
     }
   };
 
-  const createNewTask = () => ({
-    userId: userId,
-    id: uuidv4(),
-    title: taskTitle,
-    completed: false,
-  });
-
   useEffect(() => {
-    const task = createNewTask();
-    //dispatch(createData(task));
-    tasksDataCopy.unshift(task);
-    dispatch(addData(tasksDataCopy));
-  }, [dispatch, taskTitle]);
+    if (newTask) {
+      tasksDataCopy.unshift(newTask);
+      dispatch(addData(tasksDataCopy));
+      dispatch(createData(false));
+    } else if (newError && newError.newError) alert("The post request failed!");
+  }, [newError, dispatch, newTask]);
 
-  //console.log(newTask);
-  //console.log(tasksData);
   return (
     <div className={styles.creator}>
-      {/*<button>Create new task</button>*/}
       <div className={styles.search}>
         <input
           className={styles.searchInput}
           type="text"
           name="new-title"
           placeholder="Create new task"
-          //onChange={(event) => createTitle(event.target.value)}
-          onKeyPress={(event) => createTitle(event)}
+          onChange={(event) => createNewTodos(event)}
+          onKeyPress={(event) => postNewTodos(event)}
         />
       </div>
     </div>

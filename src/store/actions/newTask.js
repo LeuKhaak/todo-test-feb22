@@ -1,30 +1,45 @@
 import {
   CREATE_DATA,
-  POST_DATA,
   CREATE_ERROR,
-  //SHOW_LOADER,
+  DELETE_ERROR,
+  DELETE_DATA,
 } from "../actionTypes/actionTypesNames";
 import Repository from "../../repository";
 
-//export function showLoader(value) {
-//  return { type: SHOW_LOADER, loader: value };
-//}
+export function newError(value) {
+  return { type: CREATE_ERROR, newError: value };
+}
 
-export function getError(value) {
-  return { type: CREATE_ERROR, value };
+export function deleteError(value) {
+  return { type: DELETE_ERROR, value };
+}
+
+export function deleteReq(value) {
+  return { type: DELETE_DATA, deleteRequest: value };
 }
 
 export function createData(value) {
   return { type: CREATE_DATA, newTask: value };
 }
 
-export const postNewData = () => async (dispatch) => {
-  //dispatch(showLoader(true));
-  const { value, error } = await Repository.APIcreateData.postTask();
+export const postNewData = (newTask) => async (dispatch) => {
+  const { value, error } = await Repository.APIcreateData.postTask(newTask);
   if (error || !value) {
-    dispatch(getError(true));
-    //dispatch(showLoader(false));
+    dispatch(newError(true));
+  } else {
+    dispatch(newError(false));
+    dispatch(createData(newTask));
   }
-  dispatch(createData(value));
-  //dispatch(showLoader(false));
+  //dispatch(createData(false));
+};
+
+export const deleteTask = (taskId) => async (dispatch) => {
+  const { value, error } = await Repository.APIdeleteData.deleteTask(taskId);
+  if (error || !value) {
+    dispatch(deleteError(true));
+  } else {
+    dispatch(deleteError(false));
+    dispatch(deleteReq(taskId));
+    //dispatch(deleteRequest(false));
+  }
 };

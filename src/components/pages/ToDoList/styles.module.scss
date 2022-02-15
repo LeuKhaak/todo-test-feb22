@@ -6,30 +6,5 @@
     margin: 0 auto 0 auto;
     padding: 1rem 0;
     //min-height: calc(100vh - 10rem);
-    .taskList {
-      .task {
-        padding: 0.5rem;
-        border: 0.1rem solid rgb(160, 154, 154);
-        border-radius: 0.5rem;
-        margin-top: 0.5rem;
-        display: flex;
-        justify-content: space-between;
-        .taskActive {
-          color: #000;
-        }
-        .completed {
-          color: cadetblue;
-          text-decoration-line: line-through;
-        }
-        .delete {
-          color: red;
-          font-size: 1.2rem;
-          font-weight: 700;
-          background-color: transparent;
-          border: none;
-          cursor: pointer;
-        }
-      }
-    }
   }
 }

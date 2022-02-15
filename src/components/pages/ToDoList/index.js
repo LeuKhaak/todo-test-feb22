@@ -1,52 +1,48 @@
 import { React, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./styles.module.scss";
-import { getStartData } from "src/store/actions/person";
-import { addData } from "src/store/actions/person";
+import { getStartData } from "src/store/actions/tasks";
+import { addData } from "src/store/actions/tasks";
+import { deleteTask } from "src/store/actions/newTask";
+import { deleteReq } from "src/store/actions/newTask";
 import Creator from "src/components/organisms/Creator";
+import TaskList from "src/components/organisms/taskList";
 
 function ToDoList() {
   const dispatch = useDispatch();
 
   const tasksData = useSelector((state) => state.tasks.taskList);
-  const tasksDataCopy = [...tasksData];
+  const errorData = useSelector((state) => state.tasks.getError);
+  const deleteRequest = useSelector((state) => state.newTask.deleteRequest);
+  const deleteError = useSelector((state) => state.newTask.deleteError);
+  const tasksDataCopy = tasksData ? [...tasksData] : "";
 
-  const deleteTask = (id) => {
-    const x = tasksDataCopy.filter((element) => element.id !== id);
-    console.log(tasksDataCopy);
-    dispatch(addData(x));
+  const deleteTodos = (id) => {
+    dispatch(deleteTask(id));
   };
 
   useEffect(() => {
-    dispatch(getStartData());
+    if (tasksData === "") dispatch(getStartData());
   }, [dispatch]);
 
-  //console.log(tasksData);
+  useEffect(() => {
+    if (deleteRequest) {
+      const x = tasksDataCopy.filter((element) => element.id !== deleteRequest);
+      dispatch(addData(x));
+      dispatch(deleteReq(false));
+    } else if (deleteError && deleteError.value)
+      alert("The delete request failed!");
+  }, [deleteRequest, deleteError]);
 
   return (
     <section className={styles.todo}>
       <div className={styles.container}>
         <Creator />
-        <div className={styles.taskList}>
-          {tasksData &&
-            tasksData.map((element) => (
-              <div key={element.id} id={element.id} className={styles.task}>
-                <div
-                  className={
-                    element.completed ? styles.completed : styles.taskActive
-                  }
-                >
-                  {element.title}
-                </div>
-                <button
-                  onClick={() => deleteTask(element.id)}
-                  className={styles.delete}
-                >
-                  x
-                </button>
-              </div>
-            ))}
-        </div>
+        <TaskList
+          tasksData={tasksData}
+          errorData={errorData}
+          deleteTodos={deleteTodos}
+        />
       </div>
     </section>
   );

@@ -1,15 +1,14 @@
 import axios from "axios";
 
-class createData {
-  postTask = async (newTask) => {
+class deleteData {
+  deleteTask = async (taskId) => {
     const result = {
       value: null,
       error: null,
     };
     try {
-      const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/todos",
-        newTask
+      const response = await axios.delete(
+        `https://jsonplaceholder.typicode.com/todos/${taskId}`
       );
       result.value = response.data;
     } catch (e) {
@@ -19,4 +18,4 @@ class createData {
   };
 }
 
-export default new createData();
+export default new deleteData();

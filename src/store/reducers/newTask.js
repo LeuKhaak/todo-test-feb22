@@ -1,12 +1,15 @@
 import {
   CREATE_DATA,
-  POST_DATA,
   CREATE_ERROR,
+  DELETE_ERROR,
+  DELETE_DATA,
 } from "../actionTypes/actionTypesNames";
 
 const initialState = {
-  newTask: "",
-  getError: null,
+  newTask: false,
+  newError: null,
+  deleteError: null,
+  deleteRequest: false,
 };
 
 function loadTasks(state = initialState, action) {
@@ -16,15 +19,20 @@ function loadTasks(state = initialState, action) {
         ...state,
         newTask: action.newTask,
       };
-    case POST_DATA:
-      return {
-        ...state,
-        newTask: action.newTask,
-      };
     case CREATE_ERROR:
       return {
         ...state,
-        getError: action,
+        newError: action,
+      };
+    case DELETE_ERROR:
+      return {
+        ...state,
+        deleteError: action,
+      };
+    case DELETE_DATA:
+      return {
+        ...state,
+        deleteRequest: action.deleteRequest,
       };
     default:
       return state;
