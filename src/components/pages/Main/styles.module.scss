@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     min-height: calc(100vh - 10rem);
     .title {
       margin-bottom: 1.5rem;
